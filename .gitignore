@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+cache/
+submission/
+models/
+.venv/
+data/
+.vscode/
+.pytest_cache/
+.ruff_cache/

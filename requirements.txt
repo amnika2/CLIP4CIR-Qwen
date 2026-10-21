@@ -1,0 +1,8 @@
+torch==2.6.0
+transformers>=4.57.0
+sentence-transformers[image]>=5.4.0
+qwen-vl-utils>=0.0.14
+accelerate>=1.10.0
+peft>=0.17.0
+Pillow>=11.0.0
+tqdm>=4.67.0

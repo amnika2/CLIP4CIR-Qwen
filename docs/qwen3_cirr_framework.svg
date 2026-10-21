@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1600" height="780" viewBox="0 0 1600 780" role="img"
+     aria-labelledby="title description">
+  <title id="title">Qwen3-VL-Embedding framework for CIRR composed image retrieval</title>
+  <desc id="description">A reference image, a modification caption, and a query instruction are jointly encoded by Qwen3-VL-Embedding. The target image is encoded by the same shared model. Normalized query and target embeddings are optimized with an in-batch contrastive loss. The Qwen backbone is frozen and LoRA is trained on language attention projections.</desc>
+
+  <defs>
+    <linearGradient id="encoderGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef8e9"/>
+      <stop offset="1" stop-color="#cfe8c8"/>
+    </linearGradient>
+    <linearGradient id="targetGreen" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef8e9"/>
+      <stop offset="1" stop-color="#cfe8c8"/>
+    </linearGradient>
+    <linearGradient id="lossBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#edf5ff"/>
+      <stop offset="1" stop-color="#cfe2fb"/>
+    </linearGradient>
+    <pattern id="queryFeature" width="30" height="12" patternUnits="userSpaceOnUse">
+      <rect width="30" height="12" fill="#ffe0dc"/>
+      <rect width="11" height="12" fill="#ffb8b0"/>
+      <path d="M11 0V12 M29 0V12" stroke="#ee6d61" stroke-width="1"/>
+    </pattern>
+    <pattern id="targetFeature" width="30" height="12" patternUnits="userSpaceOnUse">
+      <rect width="30" height="12" fill="#fff0ca"/>
+      <rect width="11" height="12" fill="#ffd77d"/>
+      <path d="M11 0V12 M29 0V12" stroke="#e6a629" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#18202a"/>
+    </marker>
+    <clipPath id="referenceClip">
+      <rect x="72" y="139" width="246" height="181" rx="2"/>
+    </clipPath>
+    <clipPath id="targetClip">
+      <rect x="1304" y="137" width="232" height="198" rx="2"/>
+    </clipPath>
+    <style>
+      .sans { font-family: Arial, Helvetica, sans-serif; fill: #111820; }
+      .serif { font-family: Georgia, serif; fill: #111820; }
+      .label { font-size: 21px; font-weight: 700; }
+      .small { font-size: 15px; }
+      .tiny { font-size: 13px; }
+      .arrow { fill: none; stroke: #18202a; stroke-width: 2.5; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="840" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text class="sans" x="800" y="38" text-anchor="middle" font-size="26" font-weight="700">Qwen3-VL-Embedding for Composed Image Retrieval</text>
+  <text class="sans" x="800" y="64" text-anchor="middle" font-size="15" fill="#52606d">CIRR · joint multimodal query encoding · shared dual branch · LoRA fine-tuning</text>
+  <path d="M35 78H1565" stroke="#e2e7eb"/>
+
+  <!-- Query group -->
+  <rect x="24" y="94" width="338" height="656" rx="36" fill="#fbfcfd" stroke="#26313b" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <rect x="151" y="82" width="84" height="27" rx="13" fill="#ffffff"/>
+  <text class="sans" x="193" y="103" text-anchor="middle" font-size="21">Query</text>
+
+  <!-- Stacked reference-image card -->
+  <rect x="60" y="151" width="246" height="181" fill="#ffffff" stroke="#9aa5af"/>
+  <rect x="66" y="145" width="246" height="181" fill="#ffffff" stroke="#76828d"/>
+  <rect x="72" y="139" width="246" height="181" fill="#ffffff" stroke="#111820" stroke-width="1.4"/>
+  <image x="72" y="139" width="246" height="181" xlink:href="assets/cirr_reference.png" preserveAspectRatio="xMidYMid slice" clip-path="url(#referenceClip)"/>
+  <rect x="72" y="139" width="246" height="181" fill="none" stroke="#111820" stroke-width="1.4"/>
+  <text class="sans label" x="195" y="359" text-anchor="middle">Reference Image</text>
+
+  <!-- Modification-text card -->
+  <rect x="59" y="439" width="264" height="111" fill="#ffffff" stroke="#9aa5af"/>
+  <rect x="65" y="433" width="264" height="111" fill="#ffffff" stroke="#76828d"/>
+  <rect x="71" y="427" width="264" height="111" fill="#fffefa" stroke="#111820" stroke-width="1.4"/>
+  <text class="sans" x="89" y="464" font-size="18">
+    <tspan x="89" dy="0">Two big dogs wearing ties</tspan>
+    <tspan x="89" dy="26">and dark glasses.</tspan>
+  </text>
+  <text class="sans label" x="203" y="579" text-anchor="middle">Modification Text</text>
+
+  <!-- Query-instruction card -->
+  <rect x="65" y="627" width="270" height="84" rx="10" fill="#fff8dc" stroke="#e1bf50"/>
+  <rect x="78" y="614" width="106" height="25" rx="12" fill="#f1cf63"/>
+  <text class="sans tiny" x="131" y="632" text-anchor="middle" font-weight="700">Query instruction</text>
+  <text class="sans" x="83" y="657" font-size="11.5" fill="#4a4430">
+    <tspan x="83" dy="0">Retrieve the target image that matches</tspan>
+    <tspan x="83" dy="18">the reference image after applying the</tspan>
+    <tspan x="83" dy="18">user's modification text.</tspan>
+  </text>
+
+  <!-- Query input arrows -->
+  <path class="arrow" d="M318 231H452"/>
+  <text class="serif" x="378" y="219" font-size="20" font-style="italic">I_r</text>
+  <path class="arrow" d="M335 483H408V321H452"/>
+  <text class="serif" x="366" y="470" font-size="20" font-style="italic">T_m</text>
+  <path class="arrow" d="M335 665H430V391H452"/>
+  <text class="serif" x="374" y="651" font-size="20" font-style="italic">p_q</text>
+
+  <!-- Query encoder -->
+  <text class="sans" x="651" y="153" text-anchor="middle" font-size="18" font-weight="700">Multimodal Query Encoder</text>
+  <path d="M452 170L842 211V389L452 430Z" fill="url(#encoderGreen)" stroke="#72a666" stroke-width="1.5"/>
+  <rect x="734" y="181" width="91" height="29" rx="14" fill="#dcefd7" stroke="#72a666"/>
+  <text class="sans tiny" x="779" y="200" text-anchor="middle" font-weight="700">shared θ</text>
+  <text class="sans" x="641" y="232" text-anchor="middle" font-size="23" font-weight="700">Qwen3-VL-Embedding-2B</text>
+  <path d="M506 268H785" stroke="#9bbd93"/>
+  <rect x="504" y="287" width="279" height="42" rx="8" fill="#ffffff" fill-opacity="0.68" stroke="#afd0a7"/>
+  <text class="sans" x="644" y="314" text-anchor="middle" font-size="16">Joint Multimodal Encoding</text>
+  <rect x="504" y="340" width="279" height="37" rx="8" fill="#ffffff" fill-opacity="0.68" stroke="#afd0a7"/>
+  <text class="sans small" x="644" y="364" text-anchor="middle">Embedding Pooling + L2 Normalization</text>
+  <rect x="504" y="387" width="134" height="31" rx="15" fill="#eef2f0" stroke="#a4aea9"/>
+  <g transform="translate(517 395)" stroke="#607069" stroke-width="1.5" stroke-linecap="round">
+    <path d="M8 0V14M1 7H15M3 2L13 12M13 2L3 12"/>
+  </g>
+  <text class="sans tiny" x="582" y="407" text-anchor="middle" font-weight="700" fill="#4d5c55">Frozen backbone</text>
+  <rect x="649" y="387" width="160" height="31" rx="15" fill="#eee5ff" stroke="#876bd0"/>
+  <circle cx="666" cy="402" r="6" fill="#7956cb"/>
+  <text class="sans tiny" x="733" y="407" text-anchor="middle" font-weight="700" fill="#5639a0">LoRA · q/k/v/o</text>
+
+  <!-- Query feature -->
+  <text class="sans" x="945" y="165" text-anchor="middle" font-size="18">Query Embedding</text>
+  <path class="arrow" d="M842 300H900"/>
+  <rect x="900" y="191" width="90" height="178" fill="url(#queryFeature)" stroke="#e36b60" stroke-width="1.5"/>
+  <rect x="914" y="257" width="62" height="48" rx="3" fill="#fff9f7" fill-opacity="0.9"/>
+  <text class="serif" x="945" y="288" text-anchor="middle" font-size="24" font-style="italic">z_q</text>
+  <text class="sans tiny" x="945" y="388" text-anchor="middle" fill="#72504c">L2-normalized</text>
+
+  <!-- Target group -->
+  <rect x="1264" y="94" width="311" height="346" rx="36" fill="#fbfcfd" stroke="#26313b" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <rect x="1374" y="82" width="91" height="27" rx="13" fill="#ffffff"/>
+  <text class="sans" x="1420" y="103" text-anchor="middle" font-size="21">Target</text>
+  <rect x="1292" y="149" width="232" height="198" fill="#ffffff" stroke="#9aa5af"/>
+  <rect x="1298" y="143" width="232" height="198" fill="#ffffff" stroke="#76828d"/>
+  <rect x="1304" y="137" width="232" height="198" fill="#ffffff" stroke="#111820" stroke-width="1.4"/>
+  <image x="1304" y="137" width="232" height="198" xlink:href="assets/cirr_target.png" preserveAspectRatio="xMidYMid slice" clip-path="url(#targetClip)"/>
+  <rect x="1304" y="137" width="232" height="198" fill="none" stroke="#111820" stroke-width="1.4"/>
+  <text class="sans label" x="1420" y="378" text-anchor="middle">Target Image</text>
+  <text class="sans tiny" x="1420" y="405" text-anchor="middle" fill="#596673">paired positive in the batch</text>
+
+  <!-- Target encoder input -->
+  <path class="arrow" d="M1536 322H1551V486H1346V531"/>
+  <text class="serif" x="1446" y="475" font-size="20" font-style="italic">I_t</text>
+
+  <!-- Contrastive loss -->
+  <path class="arrow" d="M945 369V410"/>
+  <rect x="812" y="410" width="266" height="115" rx="16" fill="url(#lossBlue)" stroke="#729bd1" stroke-width="1.5"/>
+  <text class="sans" x="945" y="475" text-anchor="middle" font-size="25" font-weight="700">Contrastive Loss</text>
+
+  <!-- Target feature -->
+  <text class="sans" x="945" y="548" text-anchor="middle" font-size="18">Target Embedding</text>
+  <rect x="900" y="560" width="90" height="170" fill="url(#targetFeature)" stroke="#e1a52d" stroke-width="1.5"/>
+  <rect x="914" y="621" width="62" height="48" rx="3" fill="#fffdf6" fill-opacity="0.92"/>
+  <text class="serif" x="945" y="652" text-anchor="middle" font-size="24" font-style="italic">z_t</text>
+  <text class="sans tiny" x="945" y="748" text-anchor="middle" fill="#715d35">L2-normalized</text>
+  <path class="arrow" d="M900 585H850V525"/>
+
+  <!-- Target encoder -->
+  <text class="sans" x="1260" y="524" text-anchor="middle" font-size="18" font-weight="700">Target Image Encoder</text>
+  <path d="M1065 562L1448 531V731L1065 700Z" fill="url(#targetGreen)" stroke="#72a666" stroke-width="1.5"/>
+  <rect x="1329" y="543" width="91" height="29" rx="14" fill="#dcefd7" stroke="#72a666"/>
+  <text class="sans tiny" x="1374" y="562" text-anchor="middle" font-weight="700">shared θ</text>
+  <text class="sans" x="1261" y="593" text-anchor="middle" font-size="22" font-weight="700">Qwen3-VL-Embedding-2B</text>
+  <rect x="1124" y="621" width="274" height="43" rx="8" fill="#ffffff" fill-opacity="0.68" stroke="#afd0a7"/>
+  <text class="sans" x="1261" y="648" text-anchor="middle" font-size="16">Image Encoding + L2 Normalization</text>
+  <rect x="1126" y="681" width="133" height="30" rx="15" fill="#eef2f0" stroke="#a4aea9"/>
+  <g transform="translate(1138 689)" stroke="#607069" stroke-width="1.5" stroke-linecap="round">
+    <path d="M8 0V14M1 7H15M3 2L13 12M13 2L3 12"/>
+  </g>
+  <text class="sans tiny" x="1202" y="701" text-anchor="middle" font-weight="700" fill="#4d5c55">Frozen backbone</text>
+  <rect x="1271" y="681" width="150" height="30" rx="15" fill="#eee5ff" stroke="#876bd0"/>
+  <circle cx="1287" cy="696" r="6" fill="#7956cb"/>
+  <text class="sans tiny" x="1350" y="701" text-anchor="middle" font-weight="700" fill="#5639a0">LoRA · q/k/v/o</text>
+  <path class="arrow" d="M1065 646H990"/>
+
+</svg>
